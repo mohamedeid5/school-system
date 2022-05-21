@@ -1,30 +1,55 @@
 <?php
 
-use Illuminate\Routing\RouteGroup;
+use App\Http\Controllers\Grades\GradesController;
+use App\Http\Controllers\Classrooms\ClassroomController;
+use App\Http\Controllers\Sections\SectionsController;
+use App\Http\Controllers\Parents\ParentsController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 
 Route::group(
     [
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 ], function(){
 
+    // guest route
+    Route::group(['middleware' => 'guest'], function(){
+        Auth::routes();
+    });
 
-        Route::get('grades', function () {
-            return 'grades';
+    // auth routes
+    Route::group(['middleware' => 'auth'], function(){
+
+        // home route
+        Route::get('/', function () {
+            return 'home';
         });
 
+        // dashboard route
+        Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+        // grades routes
+        Route::resource('grades', GradesController::class);
+
+        // classroom routes
+        Route::resource('classrooms', ClassroomController::class);
+
+        Route::delete('deleteAll', [ClassroomController::class, 'deleteAll'])->name('classrooms.delete.all');
+
+        Route::get('filter_classes', [ClassroomController::class, 'filterClasses'])->name('classrooms.filter.classes');
+
+        // sections routes
+        Route::resource('sections', SectionsController::class);
+
+        Route::get('classes/{id}', [SectionsController::class, 'getClasses'])->name('get.classes');
+
+        // parents route
+        Route::resource('parents', ParentsController::class);
+
+        Route::view('add-parent', 'livewire.show-form');
+
+    });
+
 });
+
+

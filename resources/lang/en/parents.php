@@ -1,0 +1,37 @@
+<?php
+
+return [
+
+    'step1' => 'Step One',
+    'step2' => 'Step Two',
+    'step3' => 'Step Three',
+    'email' => 'Email',
+    'password' => 'Password',
+    'father_name_ar' => 'Father Name Arabic',
+    'father_name_en' => 'Father Name English',
+    'father_job_ar' => 'Father Job Arabic',
+    'father_job_en' => 'Father Job English',
+    'father_national_id' => 'Father National ID',
+    'father_passport_id' => 'Father Passport ID',
+    'father_phone' => 'Father Phone',
+    'father_nationality_id' => 'Father Nationality ID',
+    'father_blood_type' => 'Father Blood Type',
+    'father_religion' => 'Father Religion',
+    'father_address' => 'Father Address',
+    'mother_name_ar' => 'Mother Name Arabic',
+    'mother_name_en' => 'Mother Name English',
+    'mother_job_ar' => 'Mother Job Arabic',
+    'mother_job_en' => 'Mother Job English',
+    'mother_national_id' => 'Mother National ID',
+    'mother_passport_id' => 'Mother Passport ID',
+    'mother_phone' => 'Mother Phone',
+    'mother_nationality_id' => 'Mother Nationality ID',
+    'mother_blood_type' => 'Mother Blood Type',
+    'mother_religion' => 'Mother Religion',
+    'mother_address' => 'Mother Address',
+    'next' => 'Next',
+    'back' => 'Back',
+    'finish' => 'Finish',
+    'choose' => 'Choose',
+
+];

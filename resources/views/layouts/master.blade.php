@@ -29,10 +29,13 @@
 
         @include('layouts.main-sidebar')
 
+
+
         <!--=================================
  Main content -->
         <!-- main-content -->
         <div class="content-wrapper">
+            @include('errors')
 
             @yield('page-header')
 
