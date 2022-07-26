@@ -6,6 +6,12 @@
         </div>
     @endif
 
+    @if($showTable)
+        @include('livewire.parents-table')
+    @else
+
+            <button class="btn btn-primary" wire:click="showParentsTable">{{ __('parents.show_parents_table') }}</button>
+        <!-- stepwizard -->
     <div class="stepwizard">
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step">
@@ -27,6 +33,8 @@
         </div>
     </div>
 
+        <!-- includes -->
+
     @include('livewire.father-form')
     @include('livewire.mother-form')
 
@@ -36,10 +44,31 @@
                     @endif
                     <div class="col-xs-12">
                         <div class="col-md-12">
-                            <h3 style="font-family: 'Cairo', sans-serif;">هل انت متاكد من حفظ البيانات ؟</h3>
+                            <h3 style="font-family: 'Cairo', sans-serif;">{{ __('parents.add_parent_attachments') }}</h3>
+
+                            <form wire:submit.prevent="save">
+                                <input type="file" wire:model="photos" accept="image/*" multiple>
+                            </form>
+
+
                             <br><br><br><br><br><br>
-                            <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="submitForm"
-                                    type="button">{{ trans('parents.finish') }}</button>
+                            @if($updateMode)
+                                <p>photos</p>
+                                @foreach($files as $file)
+
+                                    <button class="btn btn-danger btn-sm" type="button" wire:click="deleteFile('{{ (string) $file->file_name }}', {{ $file->parent_id }})"
+                                            >{{ trans('parents.delete') }}</button>
+
+                                    <img src="{{ url('storage/parent_attachments/' . $file->parent_id . '/' . $file->file_name) }}" style="width: 10%; height: 10%;">
+
+                                @endforeach
+
+                                <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="submitEditForm"
+                                        type="button">{{ trans('parents.finish') }}</button>
+                            @else
+                                <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="submitForm"
+                                        type="button">{{ trans('parents.finish') }}</button>
+                            @endif
                             <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button"
                                     wire:click="back(2)">{{ trans('parents.back') }}</button>
                         </div>
@@ -47,5 +76,6 @@
                 </div>
         </div>
 
+    @endif
 
 </div>

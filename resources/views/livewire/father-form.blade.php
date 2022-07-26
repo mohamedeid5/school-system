@@ -12,6 +12,7 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <input type="hidden" value="{{ $password }}" name="old_password">
                     <div class="col">
                         <label for="title">{{trans('parents.password')}}</label>
                         <input type="password" wire:model="password" class="form-control" >
@@ -128,9 +129,15 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepSubmit"
-                        type="button">{{trans('parents.next')}}
-                </button>
+                @if($updateMode)
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepEditSubmit"
+                            type="button">{{trans('parents.next')}}
+                    </button>
+                @else
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="firstStepSubmit"
+                            type="button">{{trans('parents.next')}}
+                    </button>
+                @endif
 
             </div>
         </div>

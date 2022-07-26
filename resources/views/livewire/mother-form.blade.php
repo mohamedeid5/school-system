@@ -69,7 +69,7 @@
                         <select class="custom-select my-1 mr-sm-2" wire:model="mother_nationality_id">
                             <option selected>{{trans('parents.choose')}}...</option>
                             @foreach($nationalities as $national)
-                                <option value="{{$national->id}}">{{$national->name}}</option>
+                                <option value="{{ $national->id }}">{{$national->name}}</option>
                             @endforeach
                         </select>
                         @error('mother_nationality_id')
@@ -112,9 +112,16 @@
                 </div>
 
 
-                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="secondStepSubmit"
-                        type="button">{{trans('parents.next')}}
-                </button>
+                @if($updateMode)
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="secondStepEditSubmit"
+                            type="button">{{trans('parents.next')}}
+                    </button>
+                @else
+                    <button class="btn btn-success btn-sm nextBtn btn-lg pull-right" wire:click="secondStepSubmit"
+                            type="button">{{trans('parents.next')}}
+                    </button>
+                @endif
+
 
                 <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button" wire:click="back(1)">
                     {{trans('parents.back')}}

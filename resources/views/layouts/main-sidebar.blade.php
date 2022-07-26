@@ -67,9 +67,39 @@
                         </a>
                         <ul id="parents-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('parents.index') }}">{{ __('main.parents_list') }}</a> </li>
-                            <li> <a href="{{ route('parents.create') }}">{{ __('main.add_parent') }}</a> </li>
+                            <li> <a href="{{ route('add.parent') }}">{{ __('main.add_parent') }}</a> </li>
                         </ul>
                     </li>
+
+                    <!-- menu item teachers -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#teachers-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.teachers') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="teachers-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('teachers.index') }}">{{ __('main.teachers_list') }}</a> </li>
+                        </ul>
+                    </li>
+
+                    <!-- menu item students -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.students') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="students-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('students.create') }}">{{ __('main.add_student') }}</a> </li>
+                            <li> <a href="{{ route('students.index') }}">{{ __('main.students_list') }}</a> </li>
+                            <li> <a href="{{ route('promotions.index') }}">{{ __('main.students_promotions') }}</a> </li>
+                        </ul>
+                    </li>
+
+
 
                     <!-- menu item todo-->
                     <li>
