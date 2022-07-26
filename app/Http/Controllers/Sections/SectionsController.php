@@ -7,7 +7,9 @@ use App\Http\Requests\SectionsRequest;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class SectionsController extends Controller
 {
@@ -16,11 +18,12 @@ class SectionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $grades = Grade::with('sections')->get();
+        $teachers = Teacher::all();
 
-        return view('pages.sections.index', compact('grades'));
+        return view('pages.sections.index', compact('grades', 'teachers'));
     }
 
     /**
@@ -56,6 +59,9 @@ class SectionsController extends Controller
         $section->status = 1;
 
         $section->save();
+
+        // attach teachers to section
+        $section->teachers()->attach($request->teacher_id);
 
         toastr()->success(__('messages.success'));
 
@@ -108,6 +114,8 @@ class SectionsController extends Controller
         $section->status = $request->status;
 
         $section->save();
+
+        $section->teachers()->sync($request->teacher_id);
 
         toastr()->success(__('messages.success'));
 

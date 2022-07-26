@@ -7,6 +7,8 @@ return [
     'step3' => 'Step Three',
     'email' => 'Email',
     'password' => 'Password',
+    'father_name' => 'Father Name',
+    'father_job' => 'Father Job',
     'father_name_ar' => 'Father Name Arabic',
     'father_name_en' => 'Father Name English',
     'father_job_ar' => 'Father Job Arabic',
@@ -33,5 +35,10 @@ return [
     'back' => 'Back',
     'finish' => 'Finish',
     'choose' => 'Choose',
+    'add_parent_attachments' => 'Add Parent Attachments',
+    'add_parent' => 'Add Parent',
+    'show_parents_table' => 'Show Parents Table',
+    'processes' => 'Processes',
+    'delete' => 'Delete',
 
 ];

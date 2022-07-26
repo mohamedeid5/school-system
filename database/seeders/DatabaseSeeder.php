@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Religion;
 use Illuminate\Database\Seeder;
-use App\Models\Blood;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +19,8 @@ class DatabaseSeeder extends Seeder
            BloodSeeder::class,
            NationalitiesSeeder::class,
            ReligionSeeder::class,
+           GendersSeeder::class,
+           SpecializationsSeeder::class,
         ]);
     }
 }
