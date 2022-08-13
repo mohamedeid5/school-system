@@ -67,9 +67,85 @@
                         </a>
                         <ul id="parents-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('parents.index') }}">{{ __('main.parents_list') }}</a> </li>
-                            <li> <a href="{{ route('parents.create') }}">{{ __('main.add_parent') }}</a> </li>
+                            <li> <a href="{{ route('add.parent') }}">{{ __('main.add_parent') }}</a> </li>
                         </ul>
                     </li>
+
+                    <!-- menu item teachers -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#teachers-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.teachers') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="teachers-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('teachers.index') }}">{{ __('main.teachers_list') }}</a> </li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#multi-level">
+                            <div class="pull-left"><i class="ti-layers"></i><span class="right-nav-text">
+                                {{ __('main.students') }}
+                                     </span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="multi-level" class="collapse" data-parent="#sidebarnav">
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#auth">
+                                    {{ __('students.students_information') }}
+                                     <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="auth" class="collapse">
+                                    <li> <a href="{{ route('students.create') }}">{{ __('main.add_student') }}</a> </li>
+                                    <li> <a href="{{ route('students.index') }}">{{ __('main.students_list') }}</a> </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#error">{{ __('students.graduated_students')}}<div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="error" class="collapse">
+                                    <li> <a href="{{ route('graduates.index') }}">{{ __('students.graduated_students') }}</a> </li>
+                                    <li> <a href="{{ route('graduates.create') }}">{{ __('students.add_graduated_student') }}</a> </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- menu item promotions -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#promotions-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.promotions') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="promotions-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('promotions.create') }}">{{ __('main.manage_promotions') }}</a> </li>
+                            <li> <a href="{{ route('promotions.index') }}">{{ __('main.students_promotions') }}</a> </li>
+                        </ul>
+                    </li>
+
+                    <!-- menu item fees -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#fees-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.money_accounts') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="fees-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('fees.index') }}">{{ __('main.study_fees') }}</a> </li>
+                            <li> <a href="{{ route('fees-type.index') }}">{{ __('main.fees_type') }}</a> </li>
+                        </ul>
+                    </li>
+
+
 
                     <!-- menu item todo-->
                     <li>

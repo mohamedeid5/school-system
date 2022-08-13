@@ -27,7 +27,7 @@ class SectionsRequest extends FormRequest
             'name' => 'required|unique:grades,name->ar,'.$this->id,
             'name_en' => 'required|unique:grades,name->en,'.$this->id,
             'grade_id' => 'required',
-            'classroom_id' => 'required'
+            'classroom_id' => 'required',
         ];
     }
 }

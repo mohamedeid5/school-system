@@ -131,7 +131,24 @@
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>
+
                                                                         </div>
+
+                                                                            <div class="col">
+                                                                                <select class="select" name="teacher_id[]" multiple data-mdb-option-height="44" >
+                                                                                    @foreach($teachers as $teacher)
+                                                                                        <option
+                                                                                            value="{{ $teacher->id }}"
+                                                                                            {{ in_array($teacher->id, old('teacher_id', $section->teachers->pluck('id')->toArray())) ? 'selected' : ''  }}
+                                                                                            data-mdb-secondary-text="Secondary text"
+                                                                                        >
+                                                                                            {{ $teacher->name }}
+                                                                                        </option>
+                                                                                    @endforeach
+
+                                                                                </select>
+                                                                        </div>
+
                                                                     </div>
                                                                         <br><br>
 
@@ -244,22 +261,48 @@
                             </div>
                         </div>
                         <!-- grade name -->
+                        <div class="row">
+                            <div class="col">
                         <div class="form-group">
                             <label for="name_en" class="mr-sm-2">{{ __('sections.grade_name') }}
-                                <select class="form-control choose-grade" id="choose-grade" name="grade_id">
+                                <select class="form-control choose-grade" id="choose-grade" name="grade_id" style="width: 221px">
                                     <option value="">choose grade</option>
                                 @foreach($grades as $grade)
                                     <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                  @endforeach
                                 </select>
                         </div>
+                            </div>
+
                         <!-- classroom name -->
+                            <div class="col">
+
                         <div class="form-group">
                             <label for="name_en" class="mr-sm-2">{{ __('sections.classroom_name') }}
                                 <select class="form-control custom-select fill-classroom" id="fill-classroom" name="classroom_id">
                                     <option value="">choose</option>
                                 </select>
                         </div>
+                        </div>
+                        </div>
+                        <!-- teacher name -->
+                        <div class="row">
+                            <div class="col">
+                                <select class="select" name="teacher_id[]" multiple data-mdb-option-height="44" style="width: 216px">
+                                    @foreach($teachers as $teacher)
+                                    <option
+                                        value="{{ $teacher->id }}"
+                                        data-mdb-secondary-text="Secondary text"
+                                        {{ in_array($teacher->id, old('teacher_id', [])) ? 'selected' : '' }}
+                                    >
+                                        {{ $teacher->name }}
+                                    </option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
                         <br><br>
                 </div>
                 <div class="modal-footer">
