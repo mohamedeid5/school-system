@@ -22,6 +22,8 @@ class CreatePromotionsTable extends Migration
             $table->unsignedBigInteger('to_grade');
             $table->unsignedBigInteger('to_classroom');
             $table->unsignedBigInteger('to_section');
+            $table->string('academic_year');
+            $table->string('academic_year_new');
             $table->timestamps();
         });
 

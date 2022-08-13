@@ -2,11 +2,12 @@
 
 namespace App\Interfaces;
 
-interface PromotionRepositoryInterface
+interface GraduatesRepositoryInterface
 {
     public function index();
     public function create();
-    public function store($request);
+    public function softDelete($request);
+    public function returnStudent($id);
     public function destroy($id);
 
 }

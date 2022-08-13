@@ -205,53 +205,7 @@
 @section('js')
     @toastr_js
     @toastr_render
-    <script>
-        $(document).ready(function () {
-            $('select[name="grade_id"]').on('change', function () {
-                let grade_id = $(this).val();
-                if(grade_id) {
 
-                    $.ajax({
-                        url: "{{ url('classes') }}/" + grade_id,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function (data){
-                            $('select[name="classroom_id"]').empty();
-                            $('select[name="classroom_id"]').append('<option selected disabled >{{trans('parents.choose')}}...</option>');
-
-                            $.each(data, function (key, value){
-                                $('select[name="classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
-                            });
-                        }
-                    })
-                }
-            });
-        });
-    </script>
-
-
-    <script>
-        $(document).ready(function () {
-            $('select[name="classroom_id"]').on('change', function () {
-                let classroom_id = $(this).val();
-                if(classroom_id) {
-
-                    $.ajax({
-                        url: "{{ url('get-sections')  }}/" + classroom_id,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function (data){
-                            $('select[name="section_id"]').empty();
-                            $('select[name="section_id"]').append('<option selected disabled >{{trans('parents.choose')}}...</option>');
-                            $.each(data, function (key, value) {
-                                $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
-                            });
-                        }
-                    })
-                }
-            });
-        });
-    </script>
 @endsection
 
 

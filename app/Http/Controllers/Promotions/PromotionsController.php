@@ -19,4 +19,19 @@ class PromotionsController extends Controller
     {
         return $this->promotionRepository->index();
     }
+
+    public function create()
+    {
+        return $this->promotionRepository->create();
+    }
+
+    public function store(Request $request)
+    {
+        return $this->promotionRepository->store($request);
+    }
+
+    public function destroy($id)
+    {
+        return $this->promotionRepository->destroy($id);
+    }
 }

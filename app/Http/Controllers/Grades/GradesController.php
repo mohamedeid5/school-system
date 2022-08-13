@@ -8,9 +8,7 @@ use App\Http\Requests\StoreGradeRequest;
 
 class GradesController extends Controller
 {
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
+
     public function index()
     {
         $grades = Grade::all();

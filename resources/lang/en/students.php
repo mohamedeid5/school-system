@@ -30,4 +30,7 @@ return [
     'update' => 'update',
     'created_at' => 'Added At',
     'file_name' => 'File Name',
+    'students_information' => 'Students Information',
+    'graduated_students' => 'Graduated Students',
+    'add_graduated_student' => 'Add Graduated Student',
 ];
