@@ -50,18 +50,5 @@ class AttendanceRepository implements AttendanceRepositoryInterface
         return view('pages.attendance.index', compact('students'));
     }
 
-    public function edit($id)
-    {
-        // TODO: Implement edit() method.
-    }
 
-    public function update($request, $id)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function destroy($id)
-    {
-        // TODO: Implement destroy() method.
-    }
 }

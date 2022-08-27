@@ -51,6 +51,6 @@ return [
     'presence' => 'Presence',
     'absent' => 'Absent',
     'attendance_list' => 'Absence',
-    'subjects' => 'subjects',
+    'subjects' => 'Subjects',
 
 ];

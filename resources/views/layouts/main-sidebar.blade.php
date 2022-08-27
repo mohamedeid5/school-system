@@ -166,12 +166,12 @@
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#subjects-menu">
                             <div class="pull-left"><i class="ti-calendar"></i><span
-                                    class="right-nav-text">{{ __('main.attendance') }}</span></div>
+                                    class="right-nav-text">{{ __('main.subjects') }}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="subjects-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{ route('subjects.index') }}">{{ __('main.subjects') }}</a> </li>
+                            <li> <a href="{{ route('subjects.index') }}">{{ __('subjects.subjects_list') }}</a> </li>
                         </ul>
                     </li>
 
