@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
-class Fee extends Model
+class FeeInvoice extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     protected $guarded = [];
-
-    public array $translatable = ['title'];
 
     public function grade()
     {
@@ -24,9 +21,13 @@ class Fee extends Model
         return $this->belongsTo(Classroom::class);
     }
 
-    public function fee_type()
+    public function student()
     {
-        return $this->belongsTo(FeeType::class);
+        return $this->belongsTo(Student::class);
     }
 
+    public function fee()
+    {
+        return $this->belongsTo(Fee::class);
+    }
 }

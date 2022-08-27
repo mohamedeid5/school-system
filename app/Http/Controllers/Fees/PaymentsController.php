@@ -3,19 +3,16 @@
 namespace App\Http\Controllers\Fees;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreFeesRequest;
-use App\Interfaces\FeesRepositoryInterface;
 use App\Interfaces\PaymentRepositoryInterface;
 use Illuminate\Http\Request;
 
-class FeesController extends Controller
+class PaymentsController extends Controller
 {
+    private PaymentRepositoryInterface $paymentRepository;
 
-    private FeesRepositoryInterface $feesRepository;
-
-    public function __construct(FeesRepositoryInterface $feesRepository)
+    public function __construct(PaymentRepositoryInterface $paymentRepository)
     {
-        $this->feesRepository = $feesRepository;
+        $this->paymentRepository = $paymentRepository;
     }
 
     /**
@@ -25,7 +22,7 @@ class FeesController extends Controller
      */
     public function index()
     {
-        return $this->feesRepository->index();
+        return $this->paymentRepository->index();
     }
 
     /**
@@ -35,7 +32,7 @@ class FeesController extends Controller
      */
     public function create()
     {
-        return $this->feesRepository->create();
+        return $this->paymentRepository->create();
     }
 
     /**
@@ -44,9 +41,9 @@ class FeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFeesRequest $request)
+    public function store(Request $request)
     {
-        return $this->feesRepository->store($request);
+        return $this->paymentRepository->store($request);
     }
 
     /**
@@ -57,7 +54,7 @@ class FeesController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->paymentRepository->show($id);
     }
 
     /**
@@ -68,7 +65,7 @@ class FeesController extends Controller
      */
     public function edit($id)
     {
-        return $this->feesRepository->edit($id);
+        return $this->paymentRepository->edit($id);
     }
 
     /**
@@ -78,9 +75,9 @@ class FeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreFeesRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        return $this->feesRepository->update($request, $id);
+        return $this->paymentRepository->update($request, $id);
     }
 
     /**
@@ -91,6 +88,6 @@ class FeesController extends Controller
      */
     public function destroy($id)
     {
-        return $this->feesRepository->destroy($id);
+        return $this->paymentRepository->destroy($id);
     }
 }

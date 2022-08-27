@@ -142,6 +142,36 @@
                         <ul id="fees-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('fees.index') }}">{{ __('main.study_fees') }}</a> </li>
                             <li> <a href="{{ route('fees-type.index') }}">{{ __('main.fees_type') }}</a> </li>
+                            <li> <a href="{{ route('fee-invoices.index') }}">{{ __('fees.invoices') }}</a> </li>
+                            <li> <a href="{{ route('student-receipts.index') }}">{{ __('fees.student_receipt') }}</a> </li>
+                            <li> <a href="{{ route('processing-fees.index') }}">{{ __('fees.processing_fees') }}</a> </li>
+                            <li> <a href="{{ route('payments.index') }}">{{ __('fees.payments') }}</a> </li>
+                        </ul>
+                    </li>
+
+                    <!-- menu item attendance -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#attendance-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.attendance') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="attendance-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('attendance.index') }}">{{ __('attendance.attendance_list') }}</a> </li>
+                        </ul>
+                    </li>
+
+                    <!-- menu item subjects -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#subjects-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.attendance') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="subjects-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('subjects.index') }}">{{ __('main.subjects') }}</a> </li>
                         </ul>
                     </li>
 

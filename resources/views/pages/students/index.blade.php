@@ -48,9 +48,21 @@
                                                 <td>{{$student->section->name}}</td>
                                                 <td>{{$student->academic_year}}</td>
                                                 <td>
-                                                    <a href="{{route('students.edit',$student->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_student{{ $student->id }}" title="{{ trans('grades.delete') }}"><i class="fa fa-trash"></i></button>
-                                                    <a href="{{route('students.show',$student->id)}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
+                                                    <div class="dropdown show">
+                                                        <a class="btn btn-success btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            {{ __('main.processes') }}
+                                                        </a>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                            <a class="dropdown-item" href="{{route('students.show',$student->id)}}"><i style="color: #ffc107" class="far fa-eye "></i>&nbsp;{{ __('students.show_student') }}</a>
+                                                            <a class="dropdown-item" href="{{route('students.edit',$student->id)}}"><i style="color:green" class="fa fa-edit"></i>&nbsp;{{ __('students.edit_student') }}</a>
+                                                            <a class="dropdown-item" href="{{ route('fee-invoices.show', $student->id )}}"><i style="color: #0000cc" class="fa fa-edit"></i>&nbsp;{{ __('students.add_fee_invoice') }}&nbsp;</a>
+                                                            <a class="dropdown-item" href="{{ route('student-receipts.show', $student->id )}}"><i style="color: #0000cc" class="fa fa-money"></i>&nbsp;{{ __('fees.student_receipt') }}&nbsp;</a>
+                                                            <a class="dropdown-item" href="{{ route('processing-fees.show', $student->id )}}"><i style="color: #0000cc" class="fa fa-money"></i>&nbsp;{{ __('fees.processing_fees') }}&nbsp;</a>
+                                                            <a class="dropdown-item" href="{{ route('payments.show', $student->id )}}"><i style="color: #0000cc" class="fa fa-money"></i>&nbsp;{{ __('fees.payment') }}&nbsp;</a>
+                                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_student{{ $student->id }}" title="{{ __('main.delete') }}"><i class="fa fa-trash"></i>{{ __('main.delete') }}</button>
+                                                        </div>
+                                                    </div>
+
 
                                                 </td>
                                             </tr>
@@ -77,6 +89,7 @@
                                                                             data-dismiss="modal">{{ trans('My_Classes_trans.Close') }}</button>
                                                                     <button type="submit"
                                                                             class="btn btn-danger">{{ trans('My_Classes_trans.submit') }}</button>
+
                                                                 </div>
                                                             </div>
                                                         </div>

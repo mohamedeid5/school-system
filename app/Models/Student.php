@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
-class Student extends Model
+class  Student extends Model
 {
     use HasFactory, HasTranslations, SoftDeletes;
 
@@ -56,5 +56,15 @@ class Student extends Model
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function student_account()
+    {
+        return $this->hasMany(StudentAccount::class, 'student_id');
+    }
+
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class, 'student_id');
     }
 }

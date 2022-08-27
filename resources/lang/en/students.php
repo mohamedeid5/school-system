@@ -5,6 +5,7 @@ return [
     'personal_information' => 'Personal Information',
     'student_information' => 'Student Information',
     'name' => 'Name',
+    'student_name' => 'Student Name',
     'name_ar' => 'Arabic Name',
     'name_en' => 'English Name',
     'email' => 'Email',
@@ -33,4 +34,7 @@ return [
     'students_information' => 'Students Information',
     'graduated_students' => 'Graduated Students',
     'add_graduated_student' => 'Add Graduated Student',
+    'edit_student' => 'Edit Student',
+    'show_student' => 'Show Student',
+    'add_fee_invoice' => 'Add Fee Invoice',
 ];

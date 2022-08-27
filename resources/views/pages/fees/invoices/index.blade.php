@@ -1,6 +1,7 @@
 @extends('layouts.master')
+
 @section('title')
-{{ __('fees.all_fees') }}
+    {{ __('fees.fees_invoices') }}
 @stop
 
 @section('content')
@@ -12,8 +13,6 @@
                     <div class="col-xl-12 mb-30">
                         <div class="card card-statistics h-100">
                             <div class="card-body">
-                                <a href="{{route('fees.create')}}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true">{{ __('fees.add_new_fee') }}</a><br><br>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                            data-page-length="50"
@@ -21,35 +20,31 @@
                                         <thead>
                                         <tr class="alert-success">
                                             <th>#</th>
-                                            <th>{{ __('fees.name') }}</th>
+                                            <th>{{ __('students.student_name') }}</th>
                                             <th>{{ __('fees.fee_type') }}</th>
                                             <th>{{ __('fees.amount') }}</th>
                                             <th>{{ __('main.grade') }}</th>
                                             <th>{{ __('main.classroom') }}</th>
-                                            <th> {{ __('main.year') }}</th>
-                                            <th>{{ __('main.notes') }}</th>
+                                            <th>{{ __('main.description') }}</th>
                                             <th>{{ __('main.processes') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($fees as $fee)
+                                        @foreach($fee_invoices as $fee_invoice)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{$fee->title}}</td>
-                                                <td>{{$fee->fee_type->title}}</td>
-                                                <td>{{ number_format($fee->amount, 2) }}</td>
-                                                <td>{{$fee->grade->name}}</td>
-                                                <td>{{$fee->classroom->name}}</td>
-                                                <td>{{$fee->year}}</td>
-                                                <td>{{$fee->description}}</td>
+                                                <td>{{$fee_invoice->student->name}}</td>
+                                                <td>{{$fee_invoice->fee->title}}</td>
+                                                <td>{{ number_format($fee_invoice->amount, 2) }}</td>
+                                                <td>{{$fee_invoice->grade->name}}</td>
+                                                <td>{{$fee_invoice->classroom->name}}</td>
+                                                <td>{{$fee_invoice->description}}</td>
                                                 <td>
-                                                    <a href="{{route('fees.edit',$fee->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_fee{{ $fee->id }}" title="{{ trans('Grades_trans.Delete') }}"><i class="fa fa-trash"></i></button>
-                                                    <a href="#" class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
-
+                                                    <a href="{{ route('fee-invoices.edit', $fee_invoice->id) }}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_fee{{ $fee_invoice->id }}" ><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
-                                        @include('pages.fees.delete_fee')
+                                        @include('pages.fees.invoices.delete_invoice')
                                         @endforeach
                                     </table>
                                 </div>

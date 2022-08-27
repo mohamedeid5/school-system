@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Attendance\AttendanceController;
+use App\Http\Controllers\Fees\FeeInvoicesController;
 use App\Http\Controllers\Fees\FeesController;
 use App\Http\Controllers\Fees\FeesTypeController;
+use App\Http\Controllers\Fees\PaymentsController;
+use App\Http\Controllers\Fees\ProcessingFeesController;
+use App\Http\Controllers\Fees\StudentReceiptController;
 use App\Http\Controllers\Grades\GradesController;
 use App\Http\Controllers\Classrooms\ClassroomController;
 use App\Http\Controllers\Graduates\GraduatesController;
@@ -9,6 +14,7 @@ use App\Http\Controllers\Promotions\PromotionsController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Parents\ParentsController;
 use App\Http\Controllers\Students\StudentsController;
+use App\Http\Controllers\Subjects\SubjectsController;
 use App\Http\Controllers\Teachers\TeachersController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +30,7 @@ Route::group(
     });
 
     // auth routes
-    Route::group(['middleware' => 'auth'], function(){
+    Route::group(['middleware' => 'guest'], function(){
 
         // home route
         Route::get('/', function () {
@@ -73,6 +79,19 @@ Route::group(
         Route::resource('fees', FeesController::class);
 
         Route::resource('fees-type', FeesTypeController::class);
+
+        Route::resource('fee-invoices', FeeInvoicesController::class);
+
+        Route::resource('student-receipts', StudentReceiptController::class);
+
+        Route::resource('processing-fees', ProcessingFeesController::class);
+
+        Route::resource('payments', PaymentsController::class);
+
+        Route::resource('attendance', AttendanceController::class);
+
+        Route::resource('subjects', SubjectsController::class);
+
 
 
     });
