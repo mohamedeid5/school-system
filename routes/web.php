@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Attendance\AttendanceController;
+use App\Http\Controllers\Library\LibraryController;
+use App\Http\Controllers\OnlineClasses\OnlineClassesController;
+use App\Http\Controllers\Questions\QuestionsController;
+use App\Http\Controllers\Quiz\QuizzesController;
 use App\Http\Controllers\Fees\FeeInvoicesController;
 use App\Http\Controllers\Fees\FeesController;
 use App\Http\Controllers\Fees\FeesTypeController;
@@ -30,7 +34,7 @@ Route::group(
     });
 
     // auth routes
-    Route::group(['middleware' => 'guest'], function(){
+    Route::group(['middleware' => 'auth'], function(){
 
         // home route
         Route::get('/', function () {
@@ -92,6 +96,17 @@ Route::group(
 
         Route::resource('subjects', SubjectsController::class);
 
+        Route::resource('quizzes', QuizzesController::class);
+
+        Route::resource('questions', QuestionsController::class);
+
+        Route::resource('online-classes', OnlineClassesController::class);
+        Route::get('indirect', [OnlineClassesController::class, 'indirectCreate'])->name('indirect.create');
+        Route::post('indirect', [OnlineClassesController::class, 'indirectStore'])->name('indirect.store');
+
+        Route::resource('library', LibraryController::class);
+
+        Route::get('library/download-attachment/{fileName}', [LibraryController::class, 'downloadAttachment'])->name('library.download.attachment');
 
 
     });

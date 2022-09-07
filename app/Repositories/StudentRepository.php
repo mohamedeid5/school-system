@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Controllers\FileController;
 use App\Interfaces\StudentRepositoryInterface;
 use App\Models\Blood;
 use App\Models\Classroom;
@@ -12,6 +13,7 @@ use App\Models\MyParent;
 use App\Models\Nationality;
 use App\Models\Section;
 use App\Models\Student;
+use Faker\Core\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -56,7 +58,7 @@ class StudentRepository implements StudentRepositoryInterface
 
             foreach ($studentDetails->images as $image) {
 
-                $file = $image->storeAs('students/' . $student->id, $image->getClientOriginalName(), 'public');
+                FileController::upload($image,'students/' . $student->id, $image->getClientOriginalName(), 'public');
 
                 $img = new Image();
                 $img->name = $image->getClientOriginalName();
@@ -108,7 +110,7 @@ class StudentRepository implements StudentRepositoryInterface
 
             foreach ($studentDetails->images as $image) {
 
-                $file = $image->storeAs('students/' . $student->id, $image->getClientOriginalName(), 'public');
+                FileController::upload($image,'students/' . $student->id, $image->getClientOriginalName(), 'public');
 
                 $img = new Image();
                 $img->name = $image->getClientOriginalName();
@@ -131,7 +133,42 @@ class StudentRepository implements StudentRepositoryInterface
     {
         Student::find($studentId)->delete();
 
+        FileController::deleteDirectory('students/' . $studentId);
+
         return redirect()->route('students.index');
+    }
+
+
+    public function uploadAttachments($request)
+    {
+
+        foreach ($request->images as $image) {
+
+            FileController::upload($image,'students/' . $request->student_id, $image->getClientOriginalName(), 'public');
+
+            $img = new Image();
+            $img->name = $image->getClientOriginalName();
+            $img->imageable_id = $request->student_id;
+            $img->imageable_type = 'App\Models\Student';
+            $img->save();
+        }
+
+        return redirect()->back();
+
+    }
+
+    public function deleteAttachment($request)
+    {
+        FileController::deleteFile('students/' . $request->student_id . '/' . $request->name);
+
+        Image::where('id', $request->id)->delete();
+
+        return redirect()->back();
+    }
+
+    public function downloadAttachment($id, $name)
+    {
+        return FileController::downloadFile('students/'. $id . '/' .$name);
     }
 
     public function getGenders()
@@ -172,37 +209,5 @@ class StudentRepository implements StudentRepositoryInterface
     public function getSections($id)
     {
         return Section::where('classroom_id', $id)->pluck('name', 'id');
-    }
-
-    public function uploadAttachments($request)
-    {
-
-        foreach ($request->images as $image) {
-
-            $file = $image->storeAs('students/' . $request->student_id, $image->getClientOriginalName(), 'public');
-
-            $img = new Image();
-            $img->name = $image->getClientOriginalName();
-            $img->imageable_id = $request->student_id;
-            $img->imageable_type = 'App\Models\Student';
-            $img->save();
-        }
-
-        return redirect()->back();
-
-    }
-
-    public function deleteAttachment($request)
-    {
-        Storage::disk('public')->delete('students/' . $request->student_id . '/' . $request->name);
-
-        Image::where('id', $request->id)->delete();
-
-        return redirect()->back();
-    }
-
-    public function downloadAttachment($id, $name)
-    {
-        return response()->download(public_path('storage/students/'. $id . '/' .$name));
     }
 }

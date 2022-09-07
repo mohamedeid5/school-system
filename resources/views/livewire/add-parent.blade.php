@@ -59,9 +59,11 @@
                                     <button class="btn btn-danger btn-sm" type="button" wire:click="deleteFile('{{ (string) $file->file_name }}', {{ $file->parent_id }})"
                                             >{{ trans('parents.delete') }}</button>
 
-                                    <img src="{{ url('storage/parent_attachments/' . $file->parent_id . '/' . $file->file_name) }}" style="width: 10%; height: 10%;">
+                                    <img src="{{ url('storage/parent_attachments/' . $file->imageable_id . '/' . $file->name) }}" style="width: 10%; height: 10%;">
 
                                 @endforeach
+                                <br>
+                                <br>
 
                                 <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="submitEditForm"
                                         type="button">{{ trans('parents.finish') }}</button>

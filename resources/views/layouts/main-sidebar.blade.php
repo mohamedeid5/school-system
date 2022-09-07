@@ -175,6 +175,47 @@
                         </ul>
                     </li>
 
+                    <!-- menu item quizzes -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#quizzes-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.quizzes') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="quizzes-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('quizzes.index') }}">{{ __('quizzes.quizzes_list') }}</a> </li>
+                            <li> <a href="{{ route('questions.index') }}">{{ __('questions.questions_list') }}</a> </li>
+                        </ul>
+                    </li>
+
+                    <!-- menu item online_classes -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#onlineclasses-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.online_classes') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="onlineclasses-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('online-classes.index') }}">{{ __('online_classes.direct_zoom') }}</a> </li>
+                            <li> <a href="{{ route('indirect.create') }}">{{ __('online_classes.indirect_zoom') }}</a> </li>
+                        </ul>
+                    </li>
+
+                    <!-- menu item library -->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#library-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{ __('main.library') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="library-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('library.index') }}">{{ __('library.library_list') }}</a> </li>
+                        </ul>
+                    </li>
+
 
 
                     <!-- menu item todo-->

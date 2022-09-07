@@ -52,5 +52,13 @@ return [
     'absent' => 'Absent',
     'attendance_list' => 'Absence',
     'subjects' => 'Subjects',
+    'academic_year' => 'Academic Year',
+    'quizzes' => 'Quizzes',
+    'teacher_name' => 'Teacher Name',
+    'section' => 'Section',
+    'online_classes' => 'Online Classes',
+    'library' => 'Library',
+    'attachments' => 'Attachments',
+    'book_name' => 'Book Name',
 
 ];

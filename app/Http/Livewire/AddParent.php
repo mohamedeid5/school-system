@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Controllers\Upload;
+use App\Http\Controllers\FileController;
 use App\Models\Blood;
+use App\Models\Image;
 use App\Models\MyParent;
 use App\Models\Nationality;
 use App\Models\ParentAttachment;
@@ -31,11 +32,11 @@ class AddParent extends Component
     public bool $updateMode = false;
 
     public $email, $password,
-        $father_name_ar, $father_name_en,
-        $father_job_ar, $father_job_en,
-        $father_national_id, $father_passport_id, $father_phone,
-        $father_nationality_id, $father_blood_id,
-        $father_religion_id, $father_address,
+           $father_name_ar, $father_name_en,
+           $father_job_ar, $father_job_en,
+           $father_national_id, $father_passport_id,
+           $father_phone, $father_nationality_id,
+           $father_blood_id, $father_religion_id, $father_address,
 
     // mother vars
         $mother_name_ar, $mother_name_en,
@@ -69,7 +70,7 @@ class AddParent extends Component
         $bloods = Blood::all();
         $religions = Religion::all();
         $parents = MyParent::all();
-        $files = ParentAttachment::where('parent_id', $this->parentId)->get();
+        $files = Image::where('imageable_id', $this->parentId)->where('imageable_type', 'App\Models\MyParent')->get();
 
 
         return view('livewire.add-parent',[
@@ -185,14 +186,13 @@ class AddParent extends Component
         if (!empty($this->photos)) {
             foreach ($this->photos as $photo) {
 
-                //$file = $photo->storeAs($parent->id, $photo->hashName(), 'parent_attachments');
+                FileController::upload($photo,  'parent_attachments/' . $parent->id, $photo->getClientOriginalName(), 'public');
 
-               $file = $photo->storeAs('parent_attachments/' . $parent->id, $photo->getClientOriginalName() ,'public');
-
-               ParentAttachment::create([
-                  'file_name' => $photo->getClientOriginalName(),
-                  'parent_id' => $parent->id
-               ]);
+                $img = new Image();
+                $img->name = $photo->getClientOriginalName();
+                $img->imageable_id = $this->parentId;
+                $img->imageable_type = 'App\Models\MyParent';
+                $img->save();
             }
         }
     }
@@ -369,12 +369,15 @@ class AddParent extends Component
 
     public function delete($parentId)
     {
+
         if ($parentId) {
 
             MyParent::find($parentId)->delete();
 
             //Storage::disk('public')->deleteDirectory('parent_attachments/' . $parentId);
-            File::deleteDirectory(public_path('storage/parent_attachments/' . $parentId));
+            //File::deleteDirectory(public_path('storage/parent_attachments/' . $parentId));
+
+            FileController::deleteDirectory('parent_attachments/' . $parentId);
 
             $this->successMessage = __('messages.deleted');
         }
@@ -385,8 +388,7 @@ class AddParent extends Component
 
         ParentAttachment::where('parent_id', $parentId)->where('file_name', $file)->delete();
 
-        //File::delete('storage/parent_attachments/' . $parentId . '/' . $file);
-        File::delete(public_path('storage/parent_attachments/'  . $parentId . '/' . $file));
+        FileController::deleteFile('parent_attachments/'  . $parentId . '/' . $file);
 
         $this->successMessage = __('messages.deleted');
     }

@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use App\Interfaces\AttendanceRepositoryInterface;
+use App\Interfaces\LibraryRepositoryInterface;
+use App\Interfaces\OnlineClassRepositoryInterface;
+use App\Interfaces\QuestionRepositoryInterface;
+use App\Interfaces\QuizRepositoryInterface;
 use App\Interfaces\FeeInvoicesRepositoryInterface;
 use App\Interfaces\FeesRepositoryInterface;
 use App\Interfaces\ProcessingFeesRepositoryInterface;
@@ -15,6 +19,10 @@ use App\Interfaces\StudentRepositoryInterface;
 use App\Interfaces\SubjectsRepositoryInterface;
 use App\Interfaces\TeacherRepositoryInterface;
 use App\Repositories\AttendanceRepository;
+use App\Repositories\LibraryRepository;
+use App\Repositories\OnlineClassRepository;
+use App\Repositories\QuestionRepository;
+use App\Repositories\QuizRepository;
 use App\Repositories\FeeInvoicesRepository;
 use App\Repositories\FeesRepository;
 use App\Repositories\ProcessingFeesRepository;
@@ -49,6 +57,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
         $this->app->bind(AttendanceRepositoryInterface::class, AttendanceRepository::class);
         $this->app->bind(SubjectsRepositoryInterface::class, SubjectsRepository::class);
+        $this->app->bind(QuizRepositoryInterface::class, QuizRepository::class);
+        $this->app->bind(QuestionRepositoryInterface::class, QuestionRepository::class);
+        $this->app->bind(OnlineClassRepositoryInterface::class, OnlineClassRepository::class);
+        $this->app->bind(LibraryRepositoryInterface::class, LibraryRepository::class);
 
     }
 
