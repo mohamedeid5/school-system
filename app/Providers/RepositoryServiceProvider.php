@@ -14,6 +14,7 @@ use App\Interfaces\PaymentRepositoryInterface;
 use App\Interfaces\FeesTypeRepositoryInterface;
 use App\Interfaces\GraduatesRepositoryInterface;
 use App\Interfaces\PromotionRepositoryInterface;
+use App\Interfaces\SettingsRepositoryInterface;
 use App\Interfaces\StudentReceiptRepositoryInterface;
 use App\Interfaces\StudentRepositoryInterface;
 use App\Interfaces\SubjectsRepositoryInterface;
@@ -30,6 +31,7 @@ use App\Repositories\PaymentRepository;
 use App\Repositories\FeesTypeRepository;
 use App\Repositories\GraduatesRepository;
 use App\Repositories\PromotionRepository;
+use App\Repositories\SettingsRepository;
 use App\Repositories\StudentReceiptRepository;
 use App\Repositories\SubjectsRepository;
 use App\Repositories\TeacherRepository;
@@ -61,6 +63,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(QuestionRepositoryInterface::class, QuestionRepository::class);
         $this->app->bind(OnlineClassRepositoryInterface::class, OnlineClassRepository::class);
         $this->app->bind(LibraryRepositoryInterface::class, LibraryRepository::class);
+        $this->app->bind(SettingsRepositoryInterface::class, SettingsRepository::class);
 
     }
 

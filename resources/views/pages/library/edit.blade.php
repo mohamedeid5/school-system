@@ -21,7 +21,7 @@
 
                                     <div class="col">
                                         <label for="title">{{ __('library.book_name') }}</label>
-                                        <input type="text" name="title" value="{{$book->title}}" class="form-control">
+                                        <input type="text" name="title" value="{{ old('title', $book->title) }}" class="form-control">
                                     </div>
 
                                 </div>
@@ -34,7 +34,7 @@
                                             <select class="custom-select mr-sm-2" name="teacher_id">
                                                 <option selected disabled>{{trans('main.choose')}}...</option>
                                                 @foreach($teachers as $teacher)
-                                                    <option  value="{{ $teacher->id }}" {{ $teacher->id == $book->teacher_id ? 'selected' : '' }}>{{ $teacher->name }}</option>
+                                                    <option  value="{{ $teacher->id }}" {{ $teacher->id == old('teacher_id', $book->teacher_id) ? 'selected' : '' }}>{{ $teacher->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -45,7 +45,7 @@
                                             <select class="custom-select mr-sm-2" name="grade_id">
                                                 <option selected disabled>{{trans('main.choose')}}...</option>
                                                 @foreach($grades as $grade)
-                                                    <option  value="{{ $grade->id }}" {{$book->grade_id == $grade->id ?'selected':''}}>{{ $grade->name }}</option>
+                                                    <option  value="{{ $grade->id }}" {{ $grade->id == old('grade_id', $book->grade_id) ?'selected':''}}>{{ $grade->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -55,7 +55,7 @@
                                         <div class="form-group">
                                             <label for="classroom_id">{{trans('main.classrooms')}} : <span class="text-danger">*</span></label>
                                             <select class="custom-select mr-sm-2" name="classroom_id">
-                                                <option value="{{$book->classroom_id}}">{{$book->classroom->name}}</option>
+                                                <option value="{{ old('classroom_id', $book->classroom_id) }}">{{$book->classroom->name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                         <div class="form-group">
                                             <label for="section_id">{{trans('main.section')}} : </label>
                                             <select class="custom-select mr-sm-2" name="section_id">
-                                                <option value="{{$book->section_id}}">{{$book->section->name}}</option>
+                                                <option value="{{ old('section', $book->section_id) }}">{{$book->section->name}}</option>
                                             </select>
                                         </div>
                                     </div>

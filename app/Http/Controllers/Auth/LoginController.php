@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Traits\CheckGuardTrait;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -19,7 +21,8 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    //use AuthenticatesUsers;
+    use CheckGuardTrait;
 
     /**
      * Where to redirect users after login.
@@ -36,5 +39,26 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function loginForm($type)
+    {
+        return view('auth.login', compact('type'));
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = ['email' => $request->email, 'password' => $request->password];
+
+        if (auth()->guard($this->checkGuard($request))->attempt($credentials)) {
+            return redirect()->intended();
+        }
+    }
+
+    public function logout($type)
+    {
+        auth()->guard($type)->logout();
+
+        return redirect()->route('login.show', $type);
     }
 }

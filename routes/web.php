@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Attendance\AttendanceController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Library\LibraryController;
 use App\Http\Controllers\OnlineClasses\OnlineClassesController;
 use App\Http\Controllers\Questions\QuestionsController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\Graduates\GraduatesController;
 use App\Http\Controllers\Promotions\PromotionsController;
 use App\Http\Controllers\Sections\SectionsController;
 use App\Http\Controllers\Parents\ParentsController;
+use App\Http\Controllers\Settings\SettingsController;
 use App\Http\Controllers\Students\StudentsController;
 use App\Http\Controllers\Subjects\SubjectsController;
 use App\Http\Controllers\Teachers\TeachersController;
@@ -29,20 +32,25 @@ Route::group(
 ], function(){
 
     // guest route
-    Route::group(['middleware' => 'guest'], function(){
-        Auth::routes();
+   // Route::group(['middleware' => 'guest'], function(){
+        //Auth::routes();
+    //});
+
+
+    Route::group(['middleware' => 'guest'], function (){
+        Route::get('login/{type}', [LoginController::class, 'loginForm'])->name('login.show');
+        Route::post('/login', [LoginController::class, 'login'])->name('login');
+        Route::get('/', [HomeController::class, 'index'])->name('selection');
     });
 
+
+
     // auth routes
-    Route::group(['middleware' => 'auth'], function(){
+    Route::group(['middleware' => 'auth:student,parent'], function(){
 
-        // home route
-        Route::get('/', function () {
-            return 'home';
-        });
-
+        Route::get('/logout/{type}', [LoginController::class, 'logout'])->name('logout');
         // dashboard route
-        Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+        Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
 
         // grades routes
         Route::resource('grades', GradesController::class);
@@ -108,6 +116,8 @@ Route::group(
 
         Route::get('library/download-attachment/{fileName}', [LibraryController::class, 'downloadAttachment'])->name('library.download.attachment');
 
+        Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
+        Route::put('settings', [SettingsController::class, 'update'])->name('settings.update');
 
     });
 

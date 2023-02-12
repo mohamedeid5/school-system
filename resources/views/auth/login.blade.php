@@ -5,12 +5,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                @if($type == 'student')
+                <div class="card-header">{{ __('Login') }} Student</div>
+                @elseif($type == 'teacher')
+                    <div class="card-header">{{ __('Login') }} Teacher</div>
+                @elseif($type == 'parent')
+                    <div class="card-header">{{ __('Login') }} Parent</div>
+                @elseif($type == 'admin')
+                    <div class="card-header">{{ __('Login') }} Admin</div>
+                @endif
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        <input type="hidden" name="type" value="{{ $type }}">
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 

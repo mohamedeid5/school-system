@@ -60,5 +60,6 @@ return [
     'library' => 'Library',
     'attachments' => 'Attachments',
     'book_name' => 'Book Name',
+    'settings' => 'Settings',
 
 ];

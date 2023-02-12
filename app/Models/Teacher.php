@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Teacher extends Model
+
+class Teacher extends Authenticatable
 {
     use HasFactory, HasTranslations;
 

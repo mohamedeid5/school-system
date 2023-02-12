@@ -41,7 +41,7 @@ preloader -->
         <div class="page-title" >
             <div class="row">
                 <div class="col-sm-6" >
-                    <h4 class="mb-0" style="font-family: 'Cairo', sans-serif">لوحة تحكم الادمن</h4>
+                    <h4 class="mb-0" style="font-family: 'Cairo', sans-serif">لوحة تحكم المعلم: {{ auth()->user()->name }}</h4>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
@@ -51,7 +51,7 @@ preloader -->
         </div>
         <!-- widgets -->
         <div class="row" >
-            <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+            <div class="col-xl-6 col-lg-6 col-md-6 mb-30">
                 <div class="card card-statistics h-100">
                     <div class="card-body">
                         <div class="clearfix">
@@ -62,16 +62,16 @@ preloader -->
                             </div>
                             <div class="float-right text-right">
                                 <p class="card-text text-dark">عدد الطلاب</p>
-                                <h4>{{\App\Models\Student::count()}}</h4>
+                                <h4>{{$studentCount}}</h4>
                             </div>
                         </div>
                         <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                            <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('students.index')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
+                            <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('teacher-students.index')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+            <div class="col-xl-6 col-lg-6 col-md-6 mb-30">
                 <div class="card card-statistics h-100">
                     <div class="card-body">
                         <div class="clearfix">
@@ -81,52 +81,12 @@ preloader -->
                                     </span>
                             </div>
                             <div class="float-right text-right">
-                                <p class="card-text text-dark">عدد المعلمين</p>
-                                <h4>{{\App\Models\Teacher::count()}}</h4>
+                                <p class="card-text text-dark">عدد الاقسام</p>
+                                <h4>{{$sectionsCount}}</h4>
                             </div>
                         </div>
                         <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                            <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('teachers.index')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
-                <div class="card card-statistics h-100">
-                    <div class="card-body">
-                        <div class="clearfix">
-                            <div class="float-left">
-                                    <span class="text-success">
-                                        <i class="fas fa-user-tie highlight-icon" aria-hidden="true"></i>
-                                    </span>
-                            </div>
-                            <div class="float-right text-right">
-                                <p class="card-text text-dark">عدد اولياء الامور</p>
-                                <h4>{{\App\Models\MyParent::count()}}</h4>
-                            </div>
-                        </div>
-                        <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                            <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('add.parent')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
-                <div class="card card-statistics h-100">
-                    <div class="card-body">
-                        <div class="clearfix">
-                            <div class="float-left">
-                                    <span class="text-primary">
-                                        <i class="fas fa-chalkboard highlight-icon" aria-hidden="true"></i>
-                                    </span>
-                            </div>
-                            <div class="float-right text-right">
-                                <p class="card-text text-dark">عدد الفصول الدراسية</p>
-                                <h4>{{\App\Models\Section::count()}}</h4>
-                            </div>
-                        </div>
-                        <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                            <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('sections.index')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
+                            <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('teacher-sections')}}" target="_blank"><span class="text-danger">عرض البيانات</span></a>
                         </p>
                     </div>
                 </div>
@@ -199,7 +159,7 @@ preloader -->
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{$student->name}}</td>
                                                     <td>{{$student->email}}</td>
-                                                    <td>{{$student->gender->name}}</td>
+                                                    <td>{{$student->gender->type}}</td>
                                                     <td>{{$student->grade->name}}</td>
                                                     <td>{{$student->classroom->name}}</td>
                                                     <td>{{$student->section->name}}</td>
@@ -233,7 +193,7 @@ preloader -->
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{$teacher->name}}</td>
-                                                    <td>{{$teacher->gender->name}}</td>
+                                                    <td>{{$teacher->gender->type}}</td>
                                                     <td>{{$teacher->joining_date}}</td>
                                                     <td>{{$teacher->specialization->name}}</td>
                                                     <td class="text-success">{{$teacher->created_at}}</td>
@@ -264,10 +224,10 @@ preloader -->
                                             @forelse(\App\Models\MyParent::latest()->take(5)->get() as $parent)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td>{{$parent->Name_Father}}</td>
+                                                    <td>{{$parent->father_name}}</td>
                                                     <td>{{$parent->email}}</td>
-                                                    <td>{{$parent->National_ID_Father}}</td>
-                                                    <td>{{$parent->Phone_Father}}</td>
+                                                    <td>{{$parent->father_national_id}}</td>
+                                                    <td>{{$parent->father_phone}}</td>
                                                     <td class="text-success">{{$parent->created_at}}</td>
                                                     @empty
                                                         <td class="alert-danger" colspan="8">لاتوجد بيانات</td>
@@ -321,7 +281,7 @@ preloader -->
             </div>
         </div>
 
-        <livewire:calendar></livewire:calendar>
+        <livewire:calendar />
 
         <!--=================================
 wrapper -->
@@ -339,10 +299,8 @@ footer -->
 footer -->
 
 @include('layouts.footer-scripts')
-
 @livewireScripts
 @stack('scripts')
-
 
 </body>
 

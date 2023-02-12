@@ -110,7 +110,13 @@
                                 class="badge badge-info">6</span> </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
-                        <a class="dropdown-item" href="#"><i class="text-danger ti-unlock"></i>Logout</a>
+                        @if(auth()->guard('teacher')->check())
+                        <a class="dropdown-item" href="{{ route('logout', 'teacher') }}"><i class="text-danger ti-unlock"></i>Logout</a>
+                        @elseif(auth()->guard('student')->check())
+                        <a class="dropdown-item" href="{{ route('logout', 'student') }}"><i class="text-danger ti-unlock"></i>Logout</a>
+                        @elseif(auth()->guard('parent')->check())
+                        <a class="dropdown-item" href="{{ route('logout', 'parent') }}"><i class="text-danger ti-unlock"></i>Logout</a>
+                        @endif
                     </div>
                 </li>
             </ul>
